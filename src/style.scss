@@ -1,0 +1,88 @@
+@font-face {
+	src: url(../images/ROCKYAOE.ttf);
+	font-family: rocky;
+	font-weight: bold;
+}
+html {
+	height: 100%;
+	font-size: 16px;
+	font-family: arial;
+}
+body {
+	height: 100%;
+	margin: 0;
+}
+#interface {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	& > header, & > footer {
+		padding: .5em 1em;
+		background-color: #000;
+		color: #e51d25;
+		display: flex;
+		justify-content: space-between;
+		font-family: rocky;
+	}
+	& > header {
+		order: -1000;
+		justify-content: center;
+		h1 {
+			margin: 0;
+			font-size: 6em;
+			text-align: center;
+			line-height: 1em;
+		}
+	}
+	& > footer {
+		order: 1000;
+		font-size: smaller;
+	}
+}
+
+#app {
+	padding: 1em;
+	background-image: url(../images/fond.png);
+	color: white;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	gap: 1em;
+	& > * {
+		border:5px solid white;
+		border-radius: .5em;
+	}
+	@media screen and (min-aspect-ratio: 1 / 1) {
+		grid-auto-flow: column;
+	}
+}
+
+#parties {
+	background-color: rgba(0,0,0,.5);
+	padding: 1em;
+	font-size: 22px;
+	display: grid;
+	gap: 1em;
+	div {
+		@media screen and (min-aspect-ratio: 1 / 1) {
+		}
+	}
+	label[for] {
+		font-weight: bold;
+	}
+	@media screen and (max-aspect-ratio: 1 / 1) {
+		justify-self: center;
+		gap:0;
+	}
+}
+
+#apercu {
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: auto;
+	background-color: rgba(255,255,255,.5);
+	img {
+		grid-row: 1;
+		grid-column: 1;
+	}
+}
