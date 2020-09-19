@@ -18,7 +18,6 @@ export default class App {
 	}
 	static mettreAJour() {
 		// Récupérer le formulaire
-		var form = document.getElementById("parties");
 
 		//===========================================================
 		// METTRE À JOUR LES YEUX
