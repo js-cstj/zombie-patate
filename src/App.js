@@ -7,59 +7,67 @@ export default class App {
 	 */
 	static main() {
 		var app = document.getElementById("app");
-		document.getElementById("btnMaj").addEventListener("click", e => {
-			this.maj();
+		
+		document.getElementById("btnMettreAJour").addEventListener("click", e => {
+			this.mettreAJour();
 		});
+
+		// document.getElementById("parties").addEventListener("change", e => {
+		// 	this.mettreAJour();
+		// });
 	}
-	static maj() {
-		this.majYeux();
-		this.majNez();
-		this.majChapeau();
-		this.majBouche();
-		this.majBarbe();
-	}
-	static majYeux() {
+	static mettreAJour() {
+		// Récupérer le formulaire
 		var form = document.getElementById("parties");
-		var inYeux = form.elements.inYeux;
+
+		//===========================================================
+		// METTRE À JOUR LES YEUX
+		//===========================================================
+		var inYeux = form.inYeux;
 		var no = inYeux.value;
 		var yeux = document.getElementById("yeux");
-		yeux.src = `images/yeux${no}.png`;
-	}
-	static majNez() {
-		var form = document.getElementById("parties");
-		var inNez = form.elements.inNez;
+		yeux.src = "images/yeux"+no+".png";
+		
+		//===========================================================
+		// METTRE À JOUR LE NEZ
+		//===========================================================
+		var inNez = form.inNez;
 		var taille = inNez.value;
 		var nez = document.getElementById("nez");
-		nez.src = `images/nez_${taille}.png`;
-	}
-	static majChapeau() {
-		var form = document.getElementById("parties");
-		var inChapeau = form.elements.inChapeau;
+		nez.src = "images/nez_"+taille+".png";
+
+		//===========================================================
+		// METTRE À JOUR LE CHAPEAU
+		//===========================================================
+		var inChapeau = form.inChapeau;
 		var type = inChapeau.value;
 		var chapeau = document.getElementById("chapeau");
-		chapeau.src = `images/chapeau_${type}.png`;
-	}
-	static majBouche() {
-		var form = document.getElementById("parties");
-		var inTirer = form.elements.inTirer;
+		chapeau.src = "images/chapeau_"+type+".png";
+
+		//===========================================================
+		// METTRE À JOUR LA BOUCHE
+		//===========================================================
+		var inTirer = form.inTirer;
 		var tirer = inTirer.checked;
 		var bouche = document.getElementById("bouche");
 		if (tirer === true) {
-			bouche.src = `images/bouche_langue.png`;
+			bouche.src = "images/bouche_langue.png";
 		} else {
-			bouche.src = `images/bouche.png`;
+			bouche.src = "images/bouche.png";
 		}
-	}
-	static majBarbe() {
-		var form = document.getElementById("parties");
-		var inBarbe = form.elements.inBarbe;
+
+		//===========================================================
+		// METTRE À JOUR LA BARBE
+		//===========================================================
+		var inBarbe = form.inBarbe;
 		var couleur = inBarbe.value;
 		var barbe = document.getElementById("barbe");
 		if (couleur !== "") {
-			barbe.src = `images/barbe_${couleur}.png`;
+			barbe.src = "images/barbe_"+couleur+".png";
 		} else {
-			barbe.src = `images/vide.png`;
+			barbe.src = "images/vide.png";
 		}
+		 
 	}
 	/**
 	 * Méthode qui permet d'attendre le chargement de la page avant d'éxécuter le script principal
