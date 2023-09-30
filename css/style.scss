@@ -1,5 +1,5 @@
 @font-face {
-	src: url(../images/ROCKYAOE.ttf);
+	src: url(../img/ROCKYAOE.ttf);
 	font-family: rocky;
 	font-weight: bold;
 }
@@ -42,7 +42,7 @@ body {
 
 #app {
 	padding: 1em;
-	background-image: url(../images/fond.png);
+	background-image: url(../img/fond.png);
 	color: white;
 	display: grid;
 	justify-content: center;
@@ -57,24 +57,7 @@ body {
 	}
 }
 
-#parties {
-	background-color: rgba(0,0,0,.5);
-	padding: 1em;
-	font-size: 22px;
-	display: grid;
-	gap: 1em;
-	div {
-		@media screen and (min-aspect-ratio: 1 / 1) {
-		}
-	}
-	label[for] {
-		font-weight: bold;
-	}
-	@media screen and (max-aspect-ratio: 1 / 1) {
-		justify-self: center;
-		gap:0;
-	}
-}
+@import "form_parties";
 
 #apercu {
 	display: grid;

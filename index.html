@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-	<meta charset="UTF-8"/>
+	<meta charset="UTF-8" />
 	<title>ZOMBIE-PATATE</title>
-	<link rel="stylesheet" href="./src/style.css"/>
+	<link rel="stylesheet" href="./css/style.css" />
 	<script type="module">
 		import App from "./src/App.js";
+		App.main();
 	</script>
 </head>
+
 <body>
 	<div id="interface">
-		<header><h1>ZOMBIE-PATATE</h1></header>
+		<header>
+			<h1>ZOMBIE-PATATE</h1>
+		</header>
 		<footer><span>&copy; 2020</span><strong>ZOMBIE-PATATE</strong></footer>
 		<div class="body" id="app">
-		<form action="" id="parties">
-			<div>
-				<label for="inYeux">Yeux</label>
-				<input type="range" id="inYeux" name="inYeux" min="1" max="3" value="1">
-			</div>
-			<div>
-				<label for="inNez">Nez</label>
-				<label><input type="radio" id="inNez_gros" name="inNez" value="gros" checked> Gros</label>
-				<label><input type="radio" id="inNez_petit" name="inNez" value="petit"> Petit</label>
-			</div>
-			<div>
-				<label for="inChapeau">Chapeau</label>
-				<select name="inChapeau" id="inChapeau">
-					<option value="police">Police</option>
-					<option value="cowboy">Cowboy</option>
-					<option value="baseball">Baseball</option>
-				</select>
-			</div>
-			<div>
-				<label for="inTirer">Tirer la langue</label>
-				<input type="checkbox" name="inTirer" id="inTirer">
-			</div>
-			<div>
-				<label for="inBarbe">Barbe</label>
-				<select name="inBarbe" id="inBarbe">
-					<option value="">Aucune</option>
-					<option value="blond">Blonde</option>
-					<option value="brun">Brune</option>
-					<option value="noir">Noire</option>
-				</select>
-			</div>
-			<div><button id="btnMettreAJour" type="button">Mettre à jour</button></div>
-		</form>
-		<div id="apercu">
-			<img id="tete" src="images/tete.png" alt="">
-			<img id="barbe" src="images/barbe_blond.png" alt="">
-			<img id="bouche" src="images/bouche.png" alt="">
-			<img id="yeux" src="images/yeux1.png" alt="">
-			<img id="nez" src="images/nez_gros.png" alt="">
-			<img id="chapeau" src="images/chapeau_police.png" alt="">
-		</div>
+			<!-- <form action="" id="parties" name="parties" onsubmit="return false">
+				<div>
+					<label for="inYeux">Yeux</label>
+					<input type="range" id="inYeux" name="inYeux" min="1" max="3" value="1">
+				</div>
+				<div>
+					<label for="inNez">Nez</label>
+					<label><input type="radio" id="inNez_gros" name="inNez" value="gros" checked> Gros</label>
+					<label><input type="radio" id="inNez_petit" name="inNez" value="petit"> Petit</label>
+				</div>
+				<div>
+					<label for="inChapeau">Chapeau</label>
+					<select name="inChapeau" id="inChapeau">
+						<option value="police">Police</option>
+						<option value="cowboy">Cowboy</option>
+						<option value="baseball">Baseball</option>
+					</select>
+				</div>
+				<div>
+					<label for="inTirer">Tirer la langue</label>
+					<input type="checkbox" name="inTirer" id="inTirer">
+				</div>
+				<div>
+					<label for="inBarbe">Barbe</label>
+					<select name="inBarbe" id="inBarbe">
+						<option value="">Aucune</option>
+						<option value="blond">Blonde</option>
+						<option value="brun">Brune</option>
+						<option value="noir">Noire</option>
+					</select>
+				</div>
+				<div><button id="btnMettreAJour" type="button">Mettre à jour</button></div>
+			</form> -->
+			<!-- <div id="apercu"></div> -->
 		</div>
 	</div>
 </body>
+
 </html>

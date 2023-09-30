@@ -1,0 +1,38 @@
+#parties {
+	background-color: rgba(0, 0, 0, .5);
+	padding: 1em;
+	font-size: 22px;
+	display: grid;
+	gap: .5em 1em;
+	grid-template-columns: repeat(2, auto);
+	align-items: center;
+	input[type="radio"], input[type="checkbox"] {
+		height: 1.3em;
+		aspect-ratio: 1 / 1;
+		
+	}
+
+	> div {
+		display: contents;
+	}
+
+	label[for] {
+		font-weight: bold;
+	}
+
+	fieldset {
+		border: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		gap: 1em;
+	}
+	button {
+		grid-column: 1 / -1;
+	}
+
+	@media screen and (max-aspect-ratio: 1 / 1) {
+		justify-self: center;
+		gap: 0;
+	}
+}
