@@ -1,4 +1,65 @@
 export default class Zombie {
+	choix = {
+		tete: {
+			"1": "1",
+			"2": "2",
+			"3": "3",
+			"4": "4",
+		},
+		poils: {
+			"Blonds": "blond",
+			"Bruns": "brun",
+			"Noirs": "noir",
+		},
+		yeux: {
+			"1": "1",
+			"2": "2",
+			"3": "3",
+			"4": "4",
+			"5": "5",
+			"6": "6",
+		},
+		nez: {
+			"Gros": "gros",
+			"Petit": "petit",
+		},
+		cheveux: {
+			"Aucun": "",
+			"Chauve": "chauve",
+			"Court": "court",
+			"Afro": "afro",
+			"Mohawk": "mohawk",
+		},
+		chapeau: {
+			"Aucun": "",
+			"Baseball": "baseball",
+			"Beret": "beret",
+			"Casque": "casque",
+			"Casserole": "casserole",
+			"Couperet": "couperet",
+			"Cowboy": "cowboy",
+			"Fleches": "fleches",
+			"Hache": "hache",
+			"Pirate": "pirate",
+			"Police": "police",
+		},
+		bouche: {
+			"1": "1",
+			"2": "2",
+		},
+		barbe: {
+			"Oui": true,
+			"Non": false,
+		},
+		langue: {
+			"Oui": true,
+			"Non": false,
+		},
+		moustache: {
+			"Oui": true,
+			"Non": false,
+		},
+	};
 	constructor() {
 		this.attributs = {
 			tete: 1,
@@ -28,7 +89,6 @@ export default class Zombie {
 			this.parties.cheveux.src = `img/cheveux/${this.cheveux}/${poils}.png`;
 		}
 		if (this.moustache) {
-			console.log(this.moustache, poils);
 			this.parties.nez.src = `img/nez/${poils}.png`;
 		}
 	}
@@ -178,7 +238,7 @@ export default class Zombie {
 		img.alt = `Nez ${nez || this.nez}`;
 		return img;
 	}
-	html_chapeau(chapeau) {
+	html_chapeau() {
 		var img = document.createElement("img");
 		img.id = "chapeau";
 		img.src = `img/vide.png`;
@@ -198,6 +258,21 @@ export default class Zombie {
 		this.chapeau = form.inChapeau.value;
 		return;
 
+	}
+	piger(source) {
+		if (typeof source === "number") {
+			return Math.floor(Math.random() * source) + 1;
+		} else if (Array.isArray(source)) {
+			return source[Math.floor(Math.random() * source.length)];
+		} else {
+			return this.piger(Object.values(source));
+		}
+	}
+	aleatoire() {
+		for (let attribut in this.choix) {
+			this[attribut] = this.piger(this.choix[attribut]);
+		}
+		return;
 	}
 	static form() {
 		var form = document.createElement("form");
@@ -219,11 +294,16 @@ export default class Zombie {
 		form.appendChild(this.form_langue());
 		form.appendChild(this.form_barbe());
 
+		// var div = form.appendChild(document.createElement("div"));
+		// var button = div.appendChild(document.createElement("button"));
+		// button.id = "btnMettreAJour";
+		// button.type = "button";
+		// button.textContent = "Mettre à jour";
 		var div = form.appendChild(document.createElement("div"));
 		var button = div.appendChild(document.createElement("button"));
-		button.id = "btnMettreAJour";
+		button.id = "btnAlea";
 		button.type = "button";
-		button.textContent = "Mettre à jour";
+		button.textContent = "🎲 Aléatoire 🎲";
 		return form;
 	}
 	static form_tete() {

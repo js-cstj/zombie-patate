@@ -17,6 +17,10 @@ export default class App {
 		form.addEventListener("input", e => {
 			zombie.mettreAJour(form);
 		});
+		var btnAlea = document.getElementById("btnAlea");
+		btnAlea.addEventListener("click", e => {
+			zombie.aleatoire();
+		});
 	}
 	/**
 	 * Méthode qui permet d'attendre le chargement de la page avant d'éxécuter le script principal
