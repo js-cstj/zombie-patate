@@ -1,5 +1,5 @@
 export default class Zombie {
-	choix = {
+	static choix = {
 		tete: {
 			"1": "1",
 			"2": "2",
@@ -18,6 +18,12 @@ export default class Zombie {
 			"4": "4",
 			"5": "5",
 			"6": "6",
+		},
+		lunettes: {
+			"Aucunes": "",
+			"Nerd": "nerd",
+			"Patch": "patch",
+			"Soleil": "soleil",
 		},
 		nez: {
 			"Gros": "gros",
@@ -81,6 +87,7 @@ export default class Zombie {
 	}
 	set poils(poils) {
 		if (poils === this.attributs.poils) return;
+		document.forms.parties.poils.value = poils;
 		this.attributs.poils = poils;
 		if (this.barbe) {
 			this.parties.barbe.src = `img/barbe/${poils}.png`;
@@ -97,6 +104,7 @@ export default class Zombie {
 	}
 	set tete(tete) {
 		if (tete === this.attributs.tete) return;
+		document.forms.parties.tete.value = tete;
 		this.attributs.tete = tete;
 		this.parties.tete.src = `img/tete/${tete}.png`;
 	}
@@ -105,6 +113,7 @@ export default class Zombie {
 	}
 	set moustache(moustache) {
 		if (moustache === this.attributs.moustache) return;
+		document.forms.parties.moustache.checked = moustache;
 		this.attributs.moustache = moustache;
 		if (moustache) {
 			this.parties.nez.src = `img/nez/${this.poils}.png`;
@@ -117,6 +126,7 @@ export default class Zombie {
 	}
 	set cheveux(cheveux) {
 		if (cheveux === this.attributs.cheveux) return;
+		document.forms.parties.cheveux.value = cheveux;
 		this.attributs.cheveux = cheveux;
 		if (cheveux) {
 			this.parties.cheveux.src = `img/cheveux/${cheveux}/${this.poils}.png`;
@@ -129,14 +139,30 @@ export default class Zombie {
 	}
 	set yeux(yeux) {
 		if (yeux === this.attributs.yeux) return;
+		document.forms.parties.yeux.value = yeux;
 		this.attributs.yeux = yeux;
 		this.parties.yeux.src = `img/yeux/${yeux}.png`;
+	}
+
+	get lunettes() {
+		return this.attributs.lunettes;
+	}
+	set lunettes(lunettes) {
+		if (lunettes === this.attributs.lunettes) return;
+		document.forms.parties.lunettes.value = lunettes;
+		this.attributs.lunettes = lunettes;
+		if (lunettes) {
+			this.parties.lunettes.src = `img/lunettes/${lunettes}.png`;
+		} else {
+			this.parties.lunettes.src = `img/vide.png`;
+		}
 	}
 	get nez() {
 		return this.attributs.nez;
 	}
 	set nez(nez) {
 		if (nez === this.attributs.nez) return;
+		document.forms.parties.nez.value = nez;
 		this.attributs.nez = nez;
 		this.parties.nez.src = `img/nez/${nez}.png`;
 	}
@@ -145,6 +171,7 @@ export default class Zombie {
 	}
 	set chapeau(chapeau) {
 		if (chapeau === this.attributs.chapeau) return;
+		document.forms.parties.chapeau.value = chapeau;
 		this.attributs.chapeau = chapeau;
 		if (chapeau) {
 			this.parties.chapeau.src = `img/chapeau/${chapeau}.png`;
@@ -157,6 +184,7 @@ export default class Zombie {
 	}
 	set barbe(barbe) {
 		if (barbe === this.attributs.barbe) return;
+		document.forms.parties.barbe.checked = barbe;
 		this.attributs.barbe = barbe;
 		if (barbe) {
 			this.parties.barbe.src = `img/barbe/${this.poils}.png`;
@@ -169,6 +197,7 @@ export default class Zombie {
 	}
 	set bouche(bouche) {
 		if (bouche === this.attributs.bouche) return;
+		document.forms.parties.bouche.value = bouche;
 		this.attributs.bouche = bouche;
 		this.parties.bouche.src = `img/bouche/${bouche}.png`;
 	}
@@ -177,6 +206,7 @@ export default class Zombie {
 	}
 	set langue(langue) {
 		if (langue === this.attributs.langue) return;
+		document.forms.parties.langue.checked = langue;
 		this.attributs.langue = langue;
 		if (langue) {
 			this.parties.bouche.src = `img/bouche/${this.bouche}_langue.png`;
@@ -192,6 +222,7 @@ export default class Zombie {
 		this.parties.barbe = div.appendChild(this.html_barbe());
 		this.parties.bouche = div.appendChild(this.html_bouche());
 		this.parties.yeux = div.appendChild(this.html_yeux());
+		this.parties.lunettes = div.appendChild(this.html_lunettes());
 		this.parties.nez = div.appendChild(this.html_nez());
 		this.parties.chapeau = div.appendChild(this.html_chapeau());
 		return div;
@@ -231,11 +262,18 @@ export default class Zombie {
 		img.alt = `Yeux ${yeux || this.yeux}`;
 		return img;
 	}
+	html_lunettes(lunettes) {
+		var img = document.createElement("img");
+		img.id = "lunettes";
+		img.src = `img/vide.png`;
+		img.alt = `Lunettes`;
+		return img;
+	}
 	html_nez(nez) {
 		var img = document.createElement("img");
 		img.id = "nez";
 		img.src = `img/nez/${nez || this.nez}.png`;
-		img.alt = `Nez ${nez || this.nez}`;
+		img.alt = `Nez`;
 		return img;
 	}
 	html_chapeau() {
@@ -246,16 +284,17 @@ export default class Zombie {
 		return img;
 	}
 	mettreAJour(form) {
-		this.tete = form.inTete.value;
-		this.poils = form.inPoils.value;
-		this.cheveux = form.inCheveux.value;
-		this.yeux = form.inYeux.value;
-		this.nez = form.inNez.value;
-		this.moustache = form.inMoustache.checked;
-		this.bouche = form.inBouche.value;
-		this.langue = form.inLangue.checked;
-		this.barbe = form.inBarbe.checked;
-		this.chapeau = form.inChapeau.value;
+		this.tete = form.tete.value;
+		this.poils = form.poils.value;
+		this.cheveux = form.cheveux.value;
+		this.yeux = form.yeux.value;
+		this.lunettes = form.lunettes.value;
+		this.nez = form.nez.value;
+		this.moustache = form.moustache.checked;
+		this.bouche = form.bouche.value;
+		this.langue = form.langue.checked;
+		this.barbe = form.barbe.checked;
+		this.chapeau = form.chapeau.value;
 		return;
 
 	}
@@ -263,21 +302,23 @@ export default class Zombie {
 		if (typeof source === "number") {
 			return Math.floor(Math.random() * source) + 1;
 		} else if (Array.isArray(source)) {
+			if (source[0] === "" && Math.random() < .5) {
+				return "";
+			}
 			return source[Math.floor(Math.random() * source.length)];
 		} else {
 			return this.piger(Object.values(source));
 		}
 	}
 	aleatoire() {
-		for (let attribut in this.choix) {
-			this[attribut] = this.piger(this.choix[attribut]);
+		for (let attribut in Zombie.choix) {
+			this[attribut] = this.piger(Zombie.choix[attribut]);
 		}
 		return;
 	}
 	static form() {
 		var form = document.createElement("form");
 		form.action = "";
-		form.id = "parties";
 		form.name = "parties";
 		form.addEventListener("submit", e => {
 			e.preventDefault();
@@ -293,15 +334,15 @@ export default class Zombie {
 		form.appendChild(this.form_bouche());
 		form.appendChild(this.form_langue());
 		form.appendChild(this.form_barbe());
+		form.appendChild(this.form_lunettes());
 
 		// var div = form.appendChild(document.createElement("div"));
 		// var button = div.appendChild(document.createElement("button"));
-		// button.id = "btnMettreAJour";
 		// button.type = "button";
 		// button.textContent = "Mettre à jour";
 		var div = form.appendChild(document.createElement("div"));
 		var button = div.appendChild(document.createElement("button"));
-		button.id = "btnAlea";
+		button.name = "btnAlea";
 		button.type = "button";
 		button.textContent = "🎲 Aléatoire 🎲";
 		return form;
@@ -309,12 +350,11 @@ export default class Zombie {
 	static form_tete() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inTete");
+		label.setAttribute("for", "tete");
 		label.textContent = "Tete";
 		var input = div.appendChild(document.createElement("input"));
 		input.type = "range";
-		input.id = "inTete";
-		input.name = "inTete";
+		input.name = "tete";
 		input.min = "1";
 		input.max = "4";
 		input.value = "1";
@@ -323,12 +363,11 @@ export default class Zombie {
 	static form_yeux() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inYeux");
+		label.setAttribute("for", "yeux");
 		label.textContent = "Yeux";
 		var input = div.appendChild(document.createElement("input"));
 		input.type = "range";
-		input.id = "inYeux";
-		input.name = "inYeux";
+		input.name = "yeux";
 		input.min = "1";
 		input.max = "6";
 		input.value = "1";
@@ -337,12 +376,11 @@ export default class Zombie {
 	static form_bouche() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inBouche");
+		label.setAttribute("for", "bouche");
 		label.textContent = "Bouche";
 		var input = div.appendChild(document.createElement("input"));
 		input.type = "range";
-		input.id = "inBouche";
-		input.name = "inBouche";
+		input.name = "bouche";
 		input.min = "1";
 		input.max = "2";
 		input.value = "1";
@@ -351,17 +389,17 @@ export default class Zombie {
 	static form_nez() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inNez");
+		label.setAttribute("for", "nez");
 		label.textContent = "Nez";
-		const choixNez = { "Gros": "gros", "Petit": "petit" };
+		const choixNez = this.choix.nez;
 		var fieldset = div.appendChild(document.createElement("fieldset"));
 		for (let texte in choixNez) {
 			let valeur = choixNez[texte];
 			let label = fieldset.appendChild(document.createElement("label"));
 			let input = label.appendChild(document.createElement("input"));
 			input.type = "radio";
-			input.id = "inNez_" + valeur;
-			input.name = "inNez";
+			input.id = "nez_" + valeur;
+			input.name = "nez";
 			input.value = valeur;
 			input.checked = valeur === "gros";
 			label.appendChild(document.createTextNode(texte));
@@ -371,18 +409,11 @@ export default class Zombie {
 	static form_cheveux() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inCheveux");
+		label.setAttribute("for", "cheveux");
 		label.textContent = "Cheveux";
-		const choixCheveux = {
-			"Aucun": "",
-			"Chauve": "chauve",
-			"Court": "court",
-			"Afro": "afro",
-			"Mohawk": "mohawk",
-		};
+		const choixCheveux = this.choix.cheveux;
 		const select = div.appendChild(document.createElement("select"));
-		select.id = "inCheveux";
-		select.name = "inCheveux";
+		select.name = "cheveux";
 		for (let texte in choixCheveux) {
 			let valeur = choixCheveux[texte];
 			let option = select.appendChild(document.createElement("option"));
@@ -394,24 +425,11 @@ export default class Zombie {
 	static form_chapeau() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inChapeau");
+		label.setAttribute("for", "chapeau");
 		label.textContent = "Chapeau";
-		const choixChapeau = {
-			"Aucun": "",
-			"Baseball": "baseball",
-			"Beret": "beret",
-			"Casque": "casque",
-			"Casserole": "casserole",
-			"Couperet": "couperet",
-			"Cowboy": "cowboy",
-			"Fleches": "fleches",
-			"Hache": "hache",
-			"Pirate": "pirate",
-			"Police": "police",
-		};
+		const choixChapeau = this.choix.chapeau;
 		const select = div.appendChild(document.createElement("select"));
-		select.id = "inChapeau";
-		select.name = "inChapeau";
+		select.name = "chapeau";
 		for (let texte in choixChapeau) {
 			let valeur = choixChapeau[texte];
 			let option = select.appendChild(document.createElement("option"));
@@ -423,63 +441,58 @@ export default class Zombie {
 	static form_moustache() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inMoustache");
+		label.setAttribute("for", "moustache");
 		label.textContent = "Moustache";
 		var input = div.appendChild(document.createElement("input"));
 		input.type = "checkbox";
-		input.id = "inMoustache";
-		input.name = "inMoustache";
+		input.name = "moustache";
 		return div;
 	}
 	static form_langue() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inLangue");
+		label.setAttribute("for", "langue");
 		label.textContent = "Tirer la langue";
 		var input = div.appendChild(document.createElement("input"));
 		input.type = "checkbox";
-		input.id = "inLangue";
-		input.name = "inLangue";
+		input.name = "langue";
 		return div;
 	}
 	static form_barbe() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inBarbe");
+		label.setAttribute("for", "barbe");
 		label.textContent = "Barbe";
 		var input = div.appendChild(document.createElement("input"));
 		input.type = "checkbox";
-		input.id = "inBarbe";
-		input.name = "inBarbe";
+		input.name = "barbe";
 		return div;
 	}
 	static form_lunettes() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inLunettes");
+		label.setAttribute("for", "lunettes");
 		label.textContent = "lunettes";
-		const choixLunettes = { "Aucunes": "", "Nerd": "nerd", "Patch": "patch", "Soleil": "soleil" };
+		const choixLunettes = this.choix.lunettes;
 		const select = div.appendChild(document.createElement("select"));
-		select.id = "inLunettes";
-		select.name = "inLunettes";
+		select.name = "lunettes";
 		for (let texte in choixLunettes) {
 			let valeur = choixLunettes[texte];
 			let option = select.appendChild(document.createElement("option"));
 			option.textContent = texte;
 			option.value = valeur;
 		}
-		select.value = "blond";
+		select.value = "";
 		return div;
 	}
 	static form_poils() {
 		var div = document.createElement("div");
 		var label = div.appendChild(document.createElement("label"));
-		label.setAttribute("for", "inPoils");
+		label.setAttribute("for", "poils");
 		label.textContent = "Poils";
 		const choixPoils = { "Blonds": "blond", "Bruns": "brun", "Noirs": "noir" };
 		const select = div.appendChild(document.createElement("select"));
-		select.id = "inPoils";
-		select.name = "inPoils";
+		select.name = "poils";
 		for (let texte in choixPoils) {
 			let valeur = choixPoils[texte];
 			let option = select.appendChild(document.createElement("option"));

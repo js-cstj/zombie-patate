@@ -17,7 +17,7 @@ export default class App {
 		form.addEventListener("input", e => {
 			zombie.mettreAJour(form);
 		});
-		var btnAlea = document.getElementById("btnAlea");
+		var btnAlea = form.btnAlea;
 		btnAlea.addEventListener("click", e => {
 			zombie.aleatoire();
 		});

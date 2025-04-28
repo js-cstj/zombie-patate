@@ -61,7 +61,7 @@ body {
   }
 }
 
-#parties {
+form[name=parties] {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 1em;
   font-size: 22px;
@@ -70,28 +70,28 @@ body {
   grid-template-columns: repeat(2, auto);
   align-items: center;
 }
-#parties input[type=radio], #parties input[type=checkbox] {
+form[name=parties] input[type=radio], form[name=parties] input[type=checkbox] {
   height: 1.3em;
   aspect-ratio: 1/1;
 }
-#parties > div {
+form[name=parties] > div {
   display: contents;
 }
-#parties label[for] {
+form[name=parties] label[for] {
   font-weight: bold;
 }
-#parties fieldset {
+form[name=parties] fieldset {
   border: none;
   margin: 0;
   padding: 0;
   display: flex;
   gap: 1em;
 }
-#parties button {
+form[name=parties] button {
   grid-column: 1/-1;
 }
 @media screen and (max-aspect-ratio: 1/1) {
-  #parties {
+  form[name=parties] {
     justify-self: center;
     gap: 0;
   }
